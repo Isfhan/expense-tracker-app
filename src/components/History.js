@@ -1,6 +1,17 @@
-import React from 'react'
+import React,{useContext} from 'react';
+import {GlobalContext} from '../contexts/GlobalContext';
 
 function History() {
+
+    const context = useContext(GlobalContext);
+    // both are same 
+   // const {transactions} = useContext(GlobalContext);
+    const transactions = context.transactions;
+    //console.log(context);
+
+    // this function delete data from state
+    const deleteTransaction = context.deleteTransaction;
+    
     return (
         <div className="row">
             <div className="col s12 m3"></div>
@@ -8,27 +19,26 @@ function History() {
                 <h4 className="history-heading blue-grey darken-1 white-text">Transaction History</h4>
                 <ul className="collection">
 
-                    <li className="collection-item avatar green white-text">
-                        <i className="material-icons circle red">clear</i>
-                        <span className="title"><b>+5500</b></span>
-                        <p>This is descripition Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nam, voluptatum. Porro iste rem id placeat ipsum ipsam accusantium. Labore, ea.</p>
+                    {/* transaction history li start*/}
+                    {transactions.map(function(transaction){
+                        let sign = transaction.amount < 0 ? '-':'+';
+                        let generateCSSClass = transaction.amount < 0 ? 'collection-item avatar white-text red lighten-2':'collection-item avatar white-text green';
+                        
+                        return(
+                        <li key={transaction.id} className={generateCSSClass}>
+                            <i onClick={() => deleteTransaction(transaction.id)} className="waves-effect waves-light material-icons circle red">clear</i>
+                            <span className="title"><b>{sign}${Math.abs(transaction.amount)}</b></span>
+                            <p>{transaction.desc}</p>
+                        </li>
+                        )
 
-                  
-                    </li>
-
-                    <li className="collection-item avatar  red lighten-2 white-text ">
-                        <i className="material-icons circle red">clear</i>
-                        <span className="title"><b>-300</b></span>
-                        <p>This is descripition Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
-
-                  
-                    </li>
-            
+                    })}
+                    {/* transaction history li end*/}
 
                 </ul>
 
             </div>
-            <div classNameName="col s12 m3"></div>
+            <div className="col s12 m3"></div>
         </div>
     )
 }
