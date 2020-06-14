@@ -60,3 +60,16 @@ code {
   padding:15px 0 15px 0;
   font-size: 19px;
 }
+
+.custom-col-container
+{
+  background-color: white;
+  padding: 20px 15px 20px 15px !important;
+  border-radius: 8px;
+
+}
+
+#root
+{
+  background-color: tomato;
+}

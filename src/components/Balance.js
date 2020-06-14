@@ -20,21 +20,12 @@ function Balance() {
 
 
     return (
-
-        <div className="row ">
-            <div className="col s12 m3"></div>
-            <div className="col s12 m6">
-                <div className="card blue-grey darken-1 balance-card">
-                    <div className="card-content white-text">
-                        <span className="card-title"><b>Your Available Balance</b></span>
-                        <span className="card-balance-amount">${totalAmount.toFixed(2)} </span>
-                    </div>
-                </div>
+        <div className="card blue-grey darken-4 balance-card">
+            <div className="card-content white-text">
+                <span className="card-title"><b>Your Available Balance</b></span>
+                <span className="card-balance-amount">${totalAmount.toFixed(2)} </span>
             </div>
-            <div className="col s12 m3"></div>
         </div>
-
-
     )
 }
 
